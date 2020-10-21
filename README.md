@@ -1,3 +1,26 @@
+## performance_test_fixture (rolling) - 0.0.5-1
+
+The packages in the `performance_test_fixture` repository were released into the `rolling` distro by running `/usr/bin/bloom-release -e --rosdistro rolling --track rolling performance_test_fixture` on `Wed, 21 Oct 2020 19:34:37 -0000`
+
+The `performance_test_fixture` package was released.
+
+Version of package(s) in repository `performance_test_fixture`:
+
+- upstream repository: https://github.com/ros2/performance_test_fixture.git
+- release repository: https://github.com/ros2-gbp/performance_test_fixture-release.git
+- rosdistro version: `0.0.4-1`
+- old version: `0.0.4-1`
+- new version: `0.0.5-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.0`
+- catkin_pkg version: `0.4.23`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## performance_test_fixture (foxy) - 0.0.4-1
 
 The packages in the `performance_test_fixture` repository were released into the `foxy` distro by running `/usr/bin/bloom-release --rosdistro foxy --track foxy performance_test_fixture` on `Tue, 06 Oct 2020 19:52:41 -0000`

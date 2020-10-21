@@ -2,12 +2,14 @@
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
   <name>performance_test_fixture</name>
-  <version>0.0.4</version>
+  <version>0.0.5</version>
   <description>
     Test fixture and CMake macro for using osrf_testing_tools_cpp with Google Benchmark
   </description>
-  <maintainer email="scott@openrobotics.org">Scott K Logan</maintainer>
+  <maintainer email="alejandro@openrobotics.org">Alejandro Hernandez Cordero</maintainer>
   <license>Apache License 2.0</license>
+
+  <author email="scott@openrobotics.org">Scott K Logan</author>
 
   <buildtool_depend>ament_cmake_core</buildtool_depend>
   <buildtool_depend>ament_cmake_export_dependencies</buildtool_depend>

@@ -22,8 +22,11 @@
 #pragma warning(disable : 4996)
 #endif
 
-performance_test_fixture::PerformanceTest::PerformanceTest()
-: suppress_memory_tools_logging(true)
+namespace performance_test_fixture
+{
+
+PerformanceTest::PerformanceTest()
+: suppress_memory_tools_logging(true), are_allocation_measurements_active(false)
 {
   const char * performance_test_fixture_enable_trace = getenv(
     "PERFORMANCE_TEST_FIXTURE_ENABLE_TRACE");
@@ -45,29 +48,23 @@ performance_test_fixture::PerformanceTest::PerformanceTest()
     });
 }
 
-void performance_test_fixture::PerformanceTest::SetUp(benchmark::State &)
+void PerformanceTest::SetUp(benchmark::State &)
 {
   reset_heap_counters();
 
   osrf_testing_tools_cpp::memory_tools::initialize();
   osrf_testing_tools_cpp::memory_tools::on_unexpected_malloc(
     std::function<void(osrf_testing_tools_cpp::memory_tools::MemoryToolsService &)>(
-      std::bind(
-        &performance_test_fixture::PerformanceTest::on_malloc,
-        this,
-        std::placeholders::_1)));
+      std::bind(&PerformanceTest::on_malloc, this, std::placeholders::_1)));
   osrf_testing_tools_cpp::memory_tools::on_unexpected_realloc(
     std::function<void(osrf_testing_tools_cpp::memory_tools::MemoryToolsService &)>(
-      std::bind(
-        &performance_test_fixture::PerformanceTest::on_realloc,
-        this,
-        std::placeholders::_1)));
+      std::bind(&PerformanceTest::on_realloc, this, std::placeholders::_1)));
   osrf_testing_tools_cpp::memory_tools::enable_monitoring();
   osrf_testing_tools_cpp::memory_tools::expect_no_malloc_begin();
   osrf_testing_tools_cpp::memory_tools::expect_no_realloc_begin();
 }
 
-void performance_test_fixture::PerformanceTest::TearDown(benchmark::State & state)
+void PerformanceTest::TearDown(benchmark::State & state)
 {
   osrf_testing_tools_cpp::memory_tools::expect_no_malloc_end();
   osrf_testing_tools_cpp::memory_tools::expect_no_realloc_end();
@@ -82,27 +79,40 @@ void performance_test_fixture::PerformanceTest::TearDown(benchmark::State & stat
   osrf_testing_tools_cpp::memory_tools::uninitialize();
 }
 
-void performance_test_fixture::PerformanceTest::on_malloc(
+void PerformanceTest::on_malloc(
   osrf_testing_tools_cpp::memory_tools::MemoryToolsService & service
 )
 {
-  allocation_count++;
+  // Refraining from using an if-branch here in performance-critical code
+  allocation_count += static_cast<size_t>(are_allocation_measurements_active);
+
   if (suppress_memory_tools_logging) {
     service.ignore();
   }
 }
 
-void performance_test_fixture::PerformanceTest::on_realloc(
+void PerformanceTest::on_realloc(
   osrf_testing_tools_cpp::memory_tools::MemoryToolsService & service
 )
 {
-  allocation_count++;
+  // Refraining from using an if-branch here in performance-critical code
+  allocation_count += static_cast<size_t>(are_allocation_measurements_active);
+
   if (suppress_memory_tools_logging) {
     service.ignore();
   }
 }
 
-void performance_test_fixture::PerformanceTest::reset_heap_counters()
+void PerformanceTest::reset_heap_counters()
 {
   allocation_count = 0;
+  are_allocation_measurements_active = true;
 }
+
+void PerformanceTest::set_are_allocation_measurements_active(bool value)
+{
+  are_allocation_measurements_active = value;
+}
+
+
+}  // namespace performance_test_fixture

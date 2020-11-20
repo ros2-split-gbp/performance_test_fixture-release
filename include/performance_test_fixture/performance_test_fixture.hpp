@@ -18,6 +18,8 @@
 #include <benchmark/benchmark.h>
 #include <osrf_testing_tools_cpp/memory_tools/memory_tools.hpp>
 
+#include <atomic>
+
 #include "performance_test_fixture/visibility_control.hpp"
 
 namespace performance_test_fixture
@@ -45,11 +47,34 @@ protected:
   PERFORMANCE_TEST_FIXTURE_PUBLIC
   void reset_heap_counters();
 
+  PERFORMANCE_TEST_FIXTURE_PUBLIC
+  void set_are_allocation_measurements_active(bool value);
+
 private:
-  size_t allocation_count;
+  std::atomic_size_t allocation_count;
   bool suppress_memory_tools_logging;
+  bool are_allocation_measurements_active;
 };
 
 }  // namespace performance_test_fixture
+
+/**
+ * Macro to pause timing and heap allocation measurements over a section of code.
+ *
+ * This is useful if there is setup or teardown that has to occur with every iteration.
+ * For example, if you wanted to measure only construction of a rclcpp::Node and not its
+ * destruction.
+ *
+ * state.PauseTiming() does not allocate, so it should go first to minimize discrepencies in
+ * measuring timing
+ */
+#define PERFORMANCE_TEST_FIXTURE_PAUSE_MEASUREMENTS(state, code) \
+  do { \
+    state.PauseTiming(); \
+    set_are_allocation_measurements_active(false); \
+    code; \
+    set_are_allocation_measurements_active(true); \
+    state.ResumeTiming(); \
+  } while (0)
 
 #endif  // PERFORMANCE_TEST_FIXTURE__PERFORMANCE_TEST_FIXTURE_HPP_

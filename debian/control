@@ -1,0 +1,12 @@
+Source: ros-humble-performance-test-fixture
+Section: misc
+Priority: optional
+Maintainer: Alejandro Hernandez Cordero <alejandro@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), ros-humble-ament-cmake-core, ros-humble-ament-cmake-export-dependencies, ros-humble-ament-cmake-export-targets, ros-humble-ament-cmake-google-benchmark <!nocheck>, ros-humble-ament-cmake-test, ros-humble-ament-lint-auto <!nocheck>, ros-humble-ament-lint-common <!nocheck>, ros-humble-google-benchmark-vendor, ros-humble-osrf-testing-tools-cpp, ros-humble-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-humble-performance-test-fixture
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-humble-ament-cmake-google-benchmark, ros-humble-google-benchmark-vendor, ros-humble-osrf-testing-tools-cpp, ros-humble-ros-workspace
+Description: Test fixture and CMake macro for using osrf_testing_tools_cpp with Google Benchmark

@@ -1,3 +1,26 @@
+## performance_test_fixture (foxy) - 0.0.9-1
+
+The packages in the `performance_test_fixture` repository were released into the `foxy` distro by running `/usr/bin/bloom-release -r foxy performance_test_fixture` on `Mon, 25 Jul 2022 19:26:53 -0000`
+
+The `performance_test_fixture` package was released.
+
+Version of package(s) in repository `performance_test_fixture`:
+
+- upstream repository: https://github.com/ros2/performance_test_fixture.git
+- release repository: https://github.com/ros2-gbp/performance_test_fixture-release.git
+- rosdistro version: `0.0.8-1`
+- old version: `0.0.8-1`
+- new version: `0.0.9-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.7`
+- catkin_pkg version: `0.4.24`
+- rosdep version: `0.21.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## performance_test_fixture (galactic) - 0.0.9-1
 
 The packages in the `performance_test_fixture` repository were released into the `galactic` distro by running `/usr/bin/bloom-release -r galactic performance_test_fixture` on `Mon, 25 Jul 2022 19:22:40 -0000`

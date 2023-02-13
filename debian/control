@@ -1,0 +1,12 @@
+Source: ros-rolling-performance-test-fixture
+Section: misc
+Priority: optional
+Maintainer: Alejandro Hernandez Cordero <alejandro@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), ros-rolling-ament-cmake-core, ros-rolling-ament-cmake-export-dependencies, ros-rolling-ament-cmake-export-targets, ros-rolling-ament-cmake-google-benchmark <!nocheck>, ros-rolling-ament-cmake-test, ros-rolling-ament-lint-auto <!nocheck>, ros-rolling-ament-lint-common <!nocheck>, ros-rolling-google-benchmark-vendor, ros-rolling-osrf-testing-tools-cpp, ros-rolling-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-rolling-performance-test-fixture
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-rolling-ament-cmake-google-benchmark, ros-rolling-google-benchmark-vendor, ros-rolling-osrf-testing-tools-cpp, ros-rolling-ros-workspace
+Description: Test fixture and CMake macro for using osrf_testing_tools_cpp with Google Benchmark

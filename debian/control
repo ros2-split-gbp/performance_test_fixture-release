@@ -1,0 +1,12 @@
+Source: ros-iron-performance-test-fixture
+Section: misc
+Priority: optional
+Maintainer: Alejandro Hernandez Cordero <alejandro@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), ros-iron-ament-cmake-core, ros-iron-ament-cmake-export-dependencies, ros-iron-ament-cmake-export-targets, ros-iron-ament-cmake-google-benchmark <!nocheck>, ros-iron-ament-cmake-test, ros-iron-ament-lint-auto <!nocheck>, ros-iron-ament-lint-common <!nocheck>, ros-iron-google-benchmark-vendor, ros-iron-osrf-testing-tools-cpp, ros-iron-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-iron-performance-test-fixture
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-iron-ament-cmake-google-benchmark, ros-iron-google-benchmark-vendor, ros-iron-osrf-testing-tools-cpp, ros-iron-ros-workspace
+Description: Test fixture and CMake macro for using osrf_testing_tools_cpp with Google Benchmark
